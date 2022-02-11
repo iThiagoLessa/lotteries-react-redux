@@ -1,0 +1,43 @@
+@media screen and (max-width: 900px) {
+
+  .results {
+    background-color: #EFEFEF;
+    height: 100%;
+    width: 100%;
+    border-radius: 90px/30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    color: black;
+  }
+  
+  .results > div:nth-child(1) {
+    margin-bottom: 80%;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .results > div:nth-child(2) {
+    padding: 0 50px;
+  }
+
+  .results > div:nth-child(2) p {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .number {
+    background-color: white;
+    border-radius: 100%;
+    padding: 15px;
+    margin: 0 auto;
+  }
+
+}
