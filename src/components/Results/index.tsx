@@ -1,7 +1,17 @@
 import React from "react";
 import styles from "./NumbersResult.module.css";
 
-const NumbersResult: React.FC = () => {
+import { IContests } from "../../main/interfaces";
+
+interface IProps {
+  contest: IContests | null;
+}
+
+const NumbersResult: React.FC<IProps> = ({
+  contest
+}) => {
+
+  console.log("contest", contest)
 
   return(
     <div className={styles.results}>
