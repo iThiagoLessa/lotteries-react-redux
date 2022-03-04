@@ -42,6 +42,7 @@ const LoterySelected: React.FC<IProps> = ({
 
       <div className={styles['contest-number']}>
         <span>concurso nº {contest?.concursoId}</span>
+        <span>11/09/1995</span>
       </div>
     </>
   )

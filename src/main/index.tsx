@@ -16,17 +16,17 @@ const Lotteries: React.FC = () => {
   const [nameSelectedContest, setNameSelectedContest] = useState<string>("");
   const [contest, setContest] = useState<IContests | null>(null);
 
-  useEffect(() => {
-    console.log("PAI", nameSelectedContest.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-'));
-  }, [nameSelectedContest]);
+
+  const normalizeString = (text: string) => {
+    return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-');
+  }
 
   useEffect(() => {
-    if(lotteries) setNameSelectedContest(lotteries[0].nome.replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-'));
+    if(lotteries) setNameSelectedContest(normalizeString(lotteries[0].nome));
   }, [lotteries]);
 
   useEffect(() => {
     if(contests) {
-      console.log("pai", contests[selectedContest])
       setContest(contests[selectedContest])
     }
   }, [contests, selectedContest]);
