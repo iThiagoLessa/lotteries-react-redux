@@ -8,6 +8,8 @@ I decided to create this application without context API to improve this code la
 
 **Atention:** this giveaway is illustrative of an api test.
 
+[API TEST DOC](https://brainn-api-loterias.herokuapp.com/api/v1/docs/#/)
+
 ## to run the application
 
 - clone the project

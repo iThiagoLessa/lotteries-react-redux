@@ -15,6 +15,7 @@ const Lotteries: React.FC = () => {
   const [selectedContest, setSelectedContest] = useState<number>(0);
   const [nameSelectedContest, setNameSelectedContest] = useState<string>("");
   const [contest, setContest] = useState<IContests | null>(null);
+  const [lotteryDate, setLotteryDate] = useState<string>("");
 
 
   const normalizeString = (text: string) => {
@@ -36,11 +37,11 @@ const Lotteries: React.FC = () => {
 
       <div className={styles['functional-content']}>
         <SelectLottery lotteries={lotteries} isFetching={loadingLotteries} selectedContest={selectedContest} setSelectedContest={setSelectedContest} setNameSelectedContest={setNameSelectedContest} />
-        <LoterySelected contests={contests} selectedContest={selectedContest} nameSelectedContest={nameSelectedContest} lotteries={lotteries} />
+        <LoterySelected contests={contests} selectedContest={selectedContest} nameSelectedContest={nameSelectedContest} lotteries={lotteries} lotteryDate={lotteryDate} />
       </div>
 
       <div className={styles['result-content']}>
-        <NumbersResult contest={contest}  />
+        <NumbersResult contest={contest} setLotteryDate={setLotteryDate} />
       </div>
       
     </div>

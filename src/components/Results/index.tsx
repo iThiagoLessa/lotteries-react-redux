@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {Dispatch, SetStateAction, useEffect, useState } from "react";
 import styles from "./NumbersResult.module.css";
 
 import { IContests, ILotteryResult } from "../../main/interfaces";
@@ -6,19 +6,26 @@ import { useFetch } from "../hooks/useFetch";
 
 interface IProps {
   contest: IContests | null;
+  setLotteryDate: Dispatch<SetStateAction<string>>;
 }
 
 const NumbersResult: React.FC<IProps> = ({
-  contest
+  contest,
+  setLotteryDate
 }) => {
   
   const { data } = useFetch<ILotteryResult>(`https://brainn-api-loterias.herokuapp.com/api/v1/concursos/${contest?.concursoId}`);
   const [numbers, setNumbers] = useState<string[]>([]);
-  console.log("contestId", contest?.concursoId);
+  
 
   useEffect(() => {
-    if(data) setNumbers(data?.numeros);
-  }, [data]);
+    if(data) {
+      const date = new Date(data.data);
+
+      setLotteryDate(date.toLocaleDateString())
+      setNumbers(data?.numeros);
+    } 
+  }, [data, setLotteryDate]);
 
   return(
     <div className={styles.resultsContainer}>

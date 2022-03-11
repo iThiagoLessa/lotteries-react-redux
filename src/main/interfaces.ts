@@ -12,4 +12,5 @@ export interface ILotteryResult {
   id: string;
   loteria: number;
   numeros: string[];
+  data: string
 }

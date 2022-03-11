@@ -7,13 +7,15 @@ interface IProps {
   selectedContest: number;
   nameSelectedContest: string;
   lotteries: lotteries[] | null;
+  lotteryDate: string;
 }
 
 const LoterySelected: React.FC<IProps> = ({
   contests,
   selectedContest,
   nameSelectedContest,
-  lotteries
+  lotteries,
+  lotteryDate
 }) => {
   
   const [contestSelected, setContestSelected] = useState<number>(selectedContest);
@@ -42,7 +44,7 @@ const LoterySelected: React.FC<IProps> = ({
 
       <div className={styles['contest-number']}>
         <span>concurso nº {contest?.concursoId}</span>
-        <span>11/09/1995</span>
+        <span>{lotteryDate}</span>
       </div>
     </>
   )
