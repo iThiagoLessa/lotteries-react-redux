@@ -21,19 +21,22 @@ const NumbersResult: React.FC<IProps> = ({
   }, [data]);
 
   return(
-    <div className={styles.results}>
-      <div>
-        {numbers.map(number => {
-          return(
-            <div className={styles.number}>
-              <span>{number}</span>
-            </div>
-          )
-        })}
+    <div className={styles.resultsContainer}>
+      <div className={styles.resultsInfos}>
+        <div>
+          {numbers.map(number => {
+            return(
+              <div className={styles.number}>
+                <span>{number}</span>
+              </div>
+            )
+          })}
+        </div>
+        <div>
+          <p>Este sorteio é meramente ilustrativo e não possui nenhuma ligação com a CAIXA</p>
+        </div>
       </div>
-      <div>
-        <p>Este sorteio é meramente ilustrativo e não possui nenhuma ligação com a CAIXA</p>
-      </div>
+      <div className={styles.resultsBackground}></div>
     </div>
   )
 }
