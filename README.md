@@ -2,9 +2,8 @@
 
 This project was created to my studies, it's a frontend application that shows the results from lotteries. 
 
-In this first part, I created the application using reactJs, direct and indirect communication.
+In this first part, I created the application using reactJs, and [redux/toolkit](https://redux-toolkit.js.org/introduction/getting-started) to control the states of my application.
 
-I decided to create this application without context API to improve this code later, applying and studying more the context API.
 
 **Atention:** this giveaway is illustrative of an api test.
 
