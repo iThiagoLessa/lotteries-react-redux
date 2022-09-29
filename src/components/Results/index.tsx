@@ -1,39 +1,39 @@
-import React, {Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./NumbersResult.module.css";
 
 import { IContests, ILotteryResult } from "../../main/interfaces";
 import { useFetch } from "../hooks/useFetch";
+import { useDispatch } from "react-redux"; 
+import { setLotteryDate } from "../../store/Reducers";
 
 interface IProps {
   contest: IContests | null;
-  setLotteryDate: Dispatch<SetStateAction<string>>;
 }
 
 const NumbersResult: React.FC<IProps> = ({
-  contest,
-  setLotteryDate
+  contest
 }) => {
   
-  const { data } = useFetch<ILotteryResult>(`https://brainn-api-loterias.herokuapp.com/api/v1/concursos/${contest?.concursoId}`);
+  const { data } =  useFetch<ILotteryResult>(`https://brainn-api-loterias.herokuapp.com/api/v1/concursos/${contest?.concursoId}`);
   const [numbers, setNumbers] = useState<string[]>([]);
+  const dispatch = useDispatch();
   
 
   useEffect(() => {
-    if(data) {
+    if (data) {
       const date = new Date(data.data);
-
-      setLotteryDate(date.toLocaleDateString())
+      dispatch(setLotteryDate(date.toLocaleDateString()));
       setNumbers(data?.numeros);
     } 
-  }, [data, setLotteryDate]);
+  }, [data, dispatch]);
 
   return(
     <div className={styles.resultsContainer}>
       <div className={styles.resultsInfos}>
         <div>
-          {numbers.map(number => {
+          {numbers.map((number, index) => {
             return(
-              <div className={styles.number}>
+              <div key={index} className={styles.number}>
                 <span>{number}</span>
               </div>
             )

@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { IContests, lotteries } from "../../main/interfaces";
+import React from "react";
+import { IContests } from "../../main/interfaces";
 import styles from "./LoterySelected.module.css";
 
 interface IProps {
   contests: IContests[] | null;
   selectedContest: number;
   nameSelectedContest: string;
-  lotteries: lotteries[] | null;
   lotteryDate: string;
 }
 
@@ -14,24 +13,8 @@ const LoterySelected: React.FC<IProps> = ({
   contests,
   selectedContest,
   nameSelectedContest,
-  lotteries,
   lotteryDate
-}) => {
-  
-  const [contestSelected, setContestSelected] = useState<number>(selectedContest);
-  const [contest, setContest] = useState<IContests>();
-  const [nameContest, setNameContest]= useState<string>("");
-  
-  useEffect(() => {
-   if(contests) setContest(contests[contestSelected]);
-   if(lotteries) setNameContest(lotteries[0]?.nome);
-  }, [contests, contestSelected, lotteries]);
-     
-  useEffect(() => {
-    setContestSelected(selectedContest);
-    setNameContest(nameSelectedContest);
-  }, [selectedContest, nameSelectedContest]);
-
+}) => {     
 
   return contests && (
     <>
@@ -39,12 +22,12 @@ const LoterySelected: React.FC<IProps> = ({
         <figure>
           <img width={60} src={require("../../img/mega-sena.png")} alt="loterias" />
         </figure>
-        <p>{nameContest}</p>
+        <p>{ nameSelectedContest }</p>
       </div>
 
       <div className={styles['contest-number']}>
-        <span>concurso nº {contest?.concursoId}</span>
-        <span>{lotteryDate}</span>
+        <span>concurso nº {contests[selectedContest]?.concursoId}</span>
+        <span> { lotteryDate } </span>
       </div>
     </>
   )

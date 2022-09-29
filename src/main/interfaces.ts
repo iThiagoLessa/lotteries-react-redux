@@ -14,3 +14,15 @@ export interface ILotteryResult {
   numeros: string[];
   data: string
 }
+
+export interface LotteryStateRedux {
+  lotterySelected: {
+    selectedContest: number;
+    nameSelectedContest: string;
+    lotteryDate: string;
+    contest: {
+      concursoId: string;
+      loteriaId: number;
+    }
+  }
+}

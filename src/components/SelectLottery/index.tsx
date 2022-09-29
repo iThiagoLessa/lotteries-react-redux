@@ -1,35 +1,30 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { lotteries } from "../../main/interfaces";
+import React from "react";
+import { lotteries, LotteryStateRedux } from "../../main/interfaces";
 import styles from "./SelectLottery.module.css";
+
+import { useSelector, useDispatch } from 'react-redux';
+import { setSelectedContest, setNameSelectedContest } from "../../store/Reducers";
 
 
 
 interface IProps {
   lotteries: lotteries[] | null;
   isFetching: boolean;
-  selectedContest: number;
-  setSelectedContest: Dispatch<SetStateAction<number>>;
-  setNameSelectedContest: Dispatch<SetStateAction<string>>;
 }
 
 const SelectLottery: React.FC<IProps> = ({
   lotteries,
-  isFetching,
-  selectedContest,
-  setSelectedContest,
-  setNameSelectedContest
+  isFetching
 }) => {
-  const [nameContest, setNameContest] = useState<string>("");
+  const dispatch = useDispatch();
+
+  const { lotterySelected } = useSelector((state: LotteryStateRedux) => state);
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => { 
     const textvalue = e.target.selectedOptions[0].text;
-    setSelectedContest(Number(e.target.value));
-    if(textvalue) setNameContest(textvalue);
+    dispatch(setSelectedContest(Number(e.target.value)));
+    if(textvalue) dispatch(setNameSelectedContest(textvalue));
   }
-
-  useEffect(() => {
-    setNameSelectedContest(nameContest);
-  }, [nameContest, setNameSelectedContest]);
 
   return (
     <header className={styles['select-lotery']}>
@@ -40,7 +35,7 @@ const SelectLottery: React.FC<IProps> = ({
           ) :
           lotteries?.map(item => {
             return(
-              <option key={item.id} defaultValue={selectedContest} value={item.id}>{item.nome}</option>
+              <option key={item.id} defaultValue={lotterySelected.selectedContest} value={item.id}>{item.nome}</option>
             )
           })
         }
